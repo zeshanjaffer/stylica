@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <!-- Top section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:padding="@dimen/_16sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Home"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_48sdp"
+            android:hint="Search products..."
+            android:drawableStart="@android:drawable/ic_menu_search"
+            android:drawablePadding="@dimen/_8sdp"
+            android:paddingStart="@dimen/_12sdp"
+            android:paddingEnd="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:background="@drawable/bg_search_bar"
+            android:textColorHint="@color/colorAppDarkGrey"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Categories"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="@dimen/_24sdp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_16sdp">
+
+            <!-- Category 1 -->
+            <LinearLayout
+                android:id="@+id/btnCategoryClothes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginEnd="@dimen/_24sdp"
+                android:background="?attr/selectableItemBackgroundBorderless">
+                
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/_64sdp"
+                    android:layout_height="@dimen/_64sdp"
+                    app:cardCornerRadius="@dimen/_32sdp"
+                    app:cardElevation="0dp">
+                    
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/img_clothes_category"
+                        android:scaleType="centerCrop"/>
+                </androidx.cardview.widget.CardView>
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Clothes"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="@dimen/_8sdp"/>
+            </LinearLayout>
+
+            <!-- Category 2 -->
+            <LinearLayout
+                android:id="@+id/btnCategoryBeauty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="?attr/selectableItemBackgroundBorderless">
+                
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/_64sdp"
+                    android:layout_height="@dimen/_64sdp"
+                    app:cardCornerRadius="@dimen/_32sdp"
+                    app:cardElevation="0dp">
+                    
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/img_makeup_category"
+                        android:scaleType="centerCrop"/>
+                </androidx.cardview.widget.CardView>
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Makeup"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="@dimen/_8sdp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Arrivals"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginBottom="@dimen/_8sdp"/>
+
+    <GridView
+        android:id="@+id/approvedListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="2"
+        android:verticalSpacing="@dimen/_8sdp"
+        android:horizontalSpacing="@dimen/_8sdp"
+        android:padding="@dimen/_8sdp"
+        android:clipToPadding="false"
+        android:scrollbarStyle="outsideOverlay"
+        android:background="#F5F5F5"/>
+
+</LinearLayout>

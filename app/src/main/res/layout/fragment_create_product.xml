@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/_20sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create New Product"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginBottom="@dimen/_24sdp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/_16sdp"
+            app:cardElevation="@dimen/_2sdp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="@dimen/_24sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="@dimen/_24sdp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="@dimen/_150sdp"
+                    app:cardCornerRadius="@dimen/_12sdp"
+                    app:cardElevation="0dp">
+
+                    <ImageView
+                        android:id="@+id/productImageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@android:drawable/ic_menu_gallery"
+                        android:scaleType="centerCrop"
+                        android:background="#EEEEEE"/>
+                        
+                </androidx.cardview.widget.CardView>
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tap to select image"
+                    android:textSize="12sp"
+                    android:textColor="#888888"
+                    android:layout_marginTop="@dimen/_8sdp"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/_16sdp"
+            app:cardElevation="@dimen/_2sdp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="@dimen/_32sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_20sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Product Details"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="@dimen/_16sdp"/>
+
+                <EditText
+                    android:id="@+id/productNameEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_48sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:paddingHorizontal="@dimen/_16sdp"
+                    android:hint="Product Name"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="@dimen/_16sdp"/>
+
+                <Spinner
+                    android:id="@+id/categorySpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_48sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:paddingHorizontal="@dimen/_12sdp"
+                    android:spinnerMode="dropdown"
+                    android:layout_marginBottom="@dimen/_16sdp"/>
+
+                <Spinner
+                    android:id="@+id/targetAudienceSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_48sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:paddingHorizontal="@dimen/_12sdp"
+                    android:spinnerMode="dropdown"
+                    android:layout_marginBottom="@dimen/_16sdp"
+                    android:visibility="gone"/>
+
+                <EditText
+                    android:id="@+id/colorEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_48sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:paddingHorizontal="@dimen/_16sdp"
+                    android:hint="Available Colors (e.g., Red, Blue)"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="@dimen/_16sdp"
+                    android:visibility="gone"/>
+
+                <EditText
+                    android:id="@+id/sizeEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_48sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:paddingHorizontal="@dimen/_16sdp"
+                    android:hint="Available Sizes (e.g., S, M, L)"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="@dimen/_16sdp"
+                    android:visibility="gone"/>
+
+                <EditText
+                    android:id="@+id/inventoryEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_48sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:paddingHorizontal="@dimen/_16sdp"
+                    android:hint="Inventory Count"
+                    android:inputType="number"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="@dimen/_16sdp"/>
+
+                <EditText
+                    android:id="@+id/priceEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_48sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:paddingHorizontal="@dimen/_16sdp"
+                    android:hint="Price (Rs)"
+                    android:inputType="numberDecimal"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="@dimen/_16sdp"/>
+
+                <EditText
+                    android:id="@+id/descriptionEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/_100sdp"
+                    android:gravity="top|start"
+                    android:background="@drawable/bg_edit_text"
+                    android:padding="@dimen/_16sdp"
+                    android:hint="Description"
+                    android:textSize="14sp"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/addProductBtn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_56sdp"
+            android:text="Add Product"
+            android:background="@drawable/bg_btn_dark_16"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+            
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"/>
+
+    </LinearLayout>
+</ScrollView>

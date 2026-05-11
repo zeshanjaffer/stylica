@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Stylica" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <!-- Splash background -->
+        <item name="android:windowSplashScreenBackground">@color/white</item>
+
+        <!-- Splash logo -->
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo</item>
+
+        <!-- Optional: remove animation -->
+        <item name="android:windowSplashScreenAnimationDuration">0</item>
+
+    </style>
+
+</resources>

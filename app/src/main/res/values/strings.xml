@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Stylica</string>
+    <string name="login_title">Welcome Back!</string>
+    <string name="signup_title">Create Account!</string>
+    <string name="update_user_title">Update Profile</string>
+    <string name="login_title2">Login to continue!</string>
+    <string name="email_hint">jackson@gmail.com</string>
+    <string name="firstname_hint">Micheal</string>
+    <string name="new_firstname_text">First Name</string>
+    <string name="new_lastname_text">Last Name</string>
+    <string name="new_pass_text">New Password</string>
+    <string name="lastname_hint">Jackson</string>
+    <string name="retypePassword_hint">********</string>
+    <string name="email_text">Email*</string>
+    <string name="firstname_text">First Name*</string>
+    <string name="lastname_text">Last Name*</string>
+    <string name="password_text">Password*</string>
+    <string name="password_hint">********</string>
+    <string name="retypePassword_text">Retype Password*</string>
+    <string name="login_btn">Login</string>
+    <string name="register_btn">Register</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
