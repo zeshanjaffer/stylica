@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/_12sdp"
+    android:background="#F5F5F5">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search moderators"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/black"/>
+
+    <EditText
+        android:id="@+id/etDomainPart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Domain contains"
+        android:textColor="@color/black"
+        android:layout_marginTop="@dimen/_8sdp"/>
+    <EditText
+        android:id="@+id/etRegDatePart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Registration date contains"
+        android:textColor="@color/black"/>
+    <EditText
+        android:id="@+id/etProdCatPart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Has product in category (contains)"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/btnSearchMods"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:background="@drawable/bg_btn_dark_16"
+        android:textColor="@color/white"
+        android:layout_marginTop="@dimen/_8sdp"/>
+
+    <ListView
+        android:id="@+id/lvModerators"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+</LinearLayout>

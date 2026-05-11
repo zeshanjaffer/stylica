@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/_16sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Admin tools"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginBottom="@dimen/_16sdp"/>
+
+        <Button
+            android:id="@+id/btnProductSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Search moderator products"
+            android:background="@drawable/bg_btn_blue_16"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/_8sdp"/>
+
+        <Button
+            android:id="@+id/btnModeratorProducts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Moderator products by category"
+            android:background="@drawable/bg_btn_blue_16"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/_8sdp"/>
+
+        <Button
+            android:id="@+id/btnModeratorDirectory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Moderator directory"
+            android:background="@drawable/bg_btn_blue_16"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/_8sdp"/>
+
+        <Button
+            android:id="@+id/btnAnnouncements"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Announcements"
+            android:background="@drawable/bg_btn_blue_16"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/_8sdp"/>
+
+        <Button
+            android:id="@+id/btnCouriers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Couriers"
+            android:background="@drawable/bg_btn_blue_16"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/_8sdp"/>
+
+        <Button
+            android:id="@+id/btnPaymentCompanies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Insurance / payment companies"
+            android:background="@drawable/bg_btn_blue_16"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/_8sdp"/>
+
+        <Button
+            android:id="@+id/btnEmployees"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Employees"
+            android:background="@drawable/bg_btn_blue_16"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/_8sdp"/>
+
+        <Button
+            android:id="@+id/btnTransactions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Payments / transactions"
+            android:background="@drawable/bg_btn_dark_16"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/_8sdp"/>
+    </LinearLayout>
+</ScrollView>

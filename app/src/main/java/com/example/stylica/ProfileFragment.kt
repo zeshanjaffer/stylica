@@ -17,6 +17,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private lateinit var deleteBtn: Button
     private lateinit var logoutBtn: Button
     private lateinit var profileImage: ImageView
+    private lateinit var tvProfileMeta: TextView
 
     private lateinit var email: String
 
@@ -31,6 +32,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         deleteBtn = view.findViewById(R.id.deleteBtn)
         logoutBtn = view.findViewById(R.id.logoutBtn)
         profileImage = view.findViewById(R.id.profileImage)
+        tvProfileMeta = view.findViewById(R.id.tvProfileMeta)
 
         email = requireActivity().intent.getStringExtra("EMAIL")!!
 
@@ -116,7 +118,18 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         if(user != null){
             nameTv.text = "Name: ${user.firstName} ${user.lastName}"
             emailTv.text = "Email: ${user.email}"
-            
+            val meta = buildList {
+                user.gender?.takeIf { it.isNotBlank() }?.let { add("Gender: $it") }
+                user.phone?.takeIf { it.isNotBlank() }?.let { add("Contact: $it") }
+                user.address?.takeIf { it.isNotBlank() }?.let { add("Address: $it") }
+                if (user.role == "moderator") {
+                    user.domain?.takeIf { it.isNotBlank() }?.let { add("Domain: $it") }
+                }
+                user.registeredAt?.takeIf { it.isNotBlank() }?.let { add("Registered: $it") }
+            }
+            tvProfileMeta.text = meta.joinToString("\n")
+            tvProfileMeta.visibility = if (meta.isEmpty()) View.GONE else View.VISIBLE
+
             if (!user.profileImage.isNullOrEmpty()) {
                 try {
                     val uri = android.net.Uri.parse(user.profileImage)

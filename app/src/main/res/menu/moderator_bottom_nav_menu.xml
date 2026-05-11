@@ -2,13 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_add_product"
-        android:icon="@drawable/outline_arrow_back_24"
-        android:title="Add Product" />
+        android:icon="@drawable/outline_add_24"
+        android:title="Add" />
 
     <item
         android:id="@+id/nav_my_products"
         android:icon="@android:drawable/ic_menu_agenda"
-        android:title="My Products" />
+        android:title="Products" />
+
+    <item
+        android:id="@+id/nav_moderator_qa"
+        android:icon="@android:drawable/ic_menu_view"
+        android:title="Quality" />
+
+    <item
+        android:id="@+id/nav_moderator_orders"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:title="Orders" />
 
     <item
         android:id="@+id/nav_profile"

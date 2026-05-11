@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/_12sdp"
+    android:background="#F5F5F5">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Payments / transactions"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/black"/>
+
+    <EditText
+        android:id="@+id/etTxnUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="User email contains"
+        android:textColor="@color/black"
+        android:layout_marginTop="@dimen/_8sdp"/>
+    <EditText
+        android:id="@+id/etTxnDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Order date contains"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/btnTxnSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:background="@drawable/bg_btn_dark_16"
+        android:textColor="@color/white"
+        android:layout_marginTop="@dimen/_8sdp"/>
+
+    <TextView
+        android:id="@+id/tvEmptyTxn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="No transactions"
+        android:visibility="gone"/>
+
+    <ListView
+        android:id="@+id/lvTransactions"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+</LinearLayout>

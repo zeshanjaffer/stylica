@@ -13,7 +13,6 @@ class ModeratorDashboardActivity : AppCompatActivity() {
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
 
-        // Initial fragment
         if (savedInstanceState == null) {
             loadFragment(CreateProductFragment())
             bottomNav.selectedItemId = R.id.nav_add_product
@@ -23,6 +22,8 @@ class ModeratorDashboardActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.nav_add_product -> loadFragment(CreateProductFragment())
                 R.id.nav_my_products -> loadFragment(ModeratorProductsFragment())
+                R.id.nav_moderator_qa -> loadFragment(ModeratorQualityFragment())
+                R.id.nav_moderator_orders -> loadFragment(ModeratorOrdersFragment())
                 R.id.nav_profile -> loadFragment(ProfileFragment())
             }
             true

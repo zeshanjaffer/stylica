@@ -1,7 +1,12 @@
 package com.example.stylica
 
 import android.os.Bundle
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.stylica.data.db.DatabaseHelper
@@ -9,6 +14,7 @@ import com.example.stylica.data.db.DatabaseHelper
 class CheckoutActivity : AppCompatActivity() {
 
     private lateinit var paymentLauncher: androidx.activity.result.ActivityResultLauncher<android.content.Intent>
+    private lateinit var spinnerCourier: Spinner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +34,6 @@ class CheckoutActivity : AppCompatActivity() {
         val selectedSize = intent.getStringExtra("selected_size") ?: ""
         val selectedColor = intent.getStringExtra("selected_color") ?: ""
 
-        // 🔥 Show product summary
         val tvProductName = findViewById<TextView>(R.id.tvProductName)
         val tvProductPrice = findViewById<TextView>(R.id.tvProductPrice)
 
@@ -43,11 +48,10 @@ class CheckoutActivity : AppCompatActivity() {
                 itemCount++
             }
             cursor.close()
-            
+
             tvProductName.text = "Cart Checkout ($itemCount items)"
             tvProductPrice.text = "Total: Rs. $totalPrice"
         } else {
-            // Fetch product from database
             val cursor = dbHelper.readableDatabase.rawQuery(
                 "SELECT product_name, price FROM products WHERE product_id = ?",
                 arrayOf(productId.toString())
@@ -67,29 +71,52 @@ class CheckoutActivity : AppCompatActivity() {
         val etPhone = findViewById<EditText>(R.id.etPhone)
         val etAddress = findViewById<EditText>(R.id.etAddress)
         val spinnerPayment = findViewById<Spinner>(R.id.spinnerPayment)
+        spinnerCourier = findViewById(R.id.spinnerCourier)
         val btnConfirm = findViewById<Button>(R.id.btnConfirm)
 
-        // Payment options
         val paymentOptions = arrayOf("Cash on Delivery", "Bank Transfer", "EasyPaisa", "JazzCash")
 
-        val adapter = ArrayAdapter(
+        val payAdapter = ArrayAdapter(
             this,
             android.R.layout.simple_spinner_item,
             paymentOptions
         )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerPayment.adapter = adapter
+        payAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerPayment.adapter = payAdapter
 
-        // Launcher for PaymentActivity
+        val courierNames = ArrayList<String>()
+        val cCourier = dbHelper.getAllCouriers()
+        try {
+            val nameIdx = cCourier.getColumnIndex(DatabaseHelper.COL_COURIER_NAME)
+            while (cCourier.moveToNext()) {
+                if (nameIdx >= 0 && !cCourier.isNull(nameIdx)) courierNames.add(cCourier.getString(nameIdx))
+            }
+        } finally {
+            cCourier.close()
+        }
+        if (courierNames.isEmpty()) {
+            courierNames.add("Standard Delivery")
+        }
+        val courierAdapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            courierNames
+        )
+        courierAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerCourier.adapter = courierAdapter
+
         paymentLauncher = registerForActivityResult(androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
-                // Payment was successful, process the order
                 val name = etName.text.toString()
                 val phone = etPhone.text.toString()
                 val address = etAddress.text.toString()
                 val paymentMethod = spinnerPayment.selectedItem.toString()
-                
-                processOrder(isCart, userEmail, productId, quantity, name, phone, address, paymentMethod, "Confirmed", selectedSize, selectedColor, dbHelper)
+                val courier = spinnerCourier.selectedItem?.toString() ?: ""
+
+                processOrder(
+                    isCart, userEmail, productId, quantity, name, phone, address,
+                    paymentMethod, "Confirmed", selectedSize, selectedColor, courier, dbHelper
+                )
             } else {
                 Toast.makeText(this, "Payment Cancelled", Toast.LENGTH_SHORT).show()
             }
@@ -101,20 +128,26 @@ class CheckoutActivity : AppCompatActivity() {
             val phone = etPhone.text.toString()
             val address = etAddress.text.toString()
             val paymentMethod = spinnerPayment.selectedItem.toString()
+            val courier = spinnerCourier.selectedItem?.toString() ?: ""
 
             if (name.isEmpty() || phone.isEmpty() || address.isEmpty()) {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+            if (courier.isEmpty()) {
+                Toast.makeText(this, "Please select a courier", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
             if (paymentMethod != "Cash on Delivery") {
-                // Launch mock payment screen
                 val intent = android.content.Intent(this, PaymentActivity::class.java)
                 intent.putExtra("payment_method", paymentMethod)
                 paymentLauncher.launch(intent)
             } else {
-                // Process order immediately for COD
-                processOrder(isCart, userEmail, productId, quantity, name, phone, address, paymentMethod, "Confirmed", selectedSize, selectedColor, dbHelper)
+                processOrder(
+                    isCart, userEmail, productId, quantity, name, phone, address,
+                    paymentMethod, "Confirmed", selectedSize, selectedColor, courier, dbHelper
+                )
             }
         }
     }
@@ -131,6 +164,7 @@ class CheckoutActivity : AppCompatActivity() {
         status: String,
         size: String,
         color: String,
+        courier: String,
         dbHelper: DatabaseHelper
     ) {
         if (isCart) {
@@ -138,13 +172,13 @@ class CheckoutActivity : AppCompatActivity() {
             while (cursor.moveToNext()) {
                 val pId = cursor.getInt(cursor.getColumnIndexOrThrow("product_id"))
                 val qty = cursor.getInt(cursor.getColumnIndexOrThrow("quantity"))
-                
+
                 val sizeIndex = cursor.getColumnIndex("selected_size")
                 val itemSize = if (sizeIndex != -1 && !cursor.isNull(sizeIndex)) cursor.getString(sizeIndex) else ""
-                
+
                 val colorIndex = cursor.getColumnIndex("selected_color")
                 val itemColor = if (colorIndex != -1 && !cursor.isNull(colorIndex)) cursor.getString(colorIndex) else ""
-                
+
                 dbHelper.insertOrder(
                     pId,
                     userEmail,
@@ -154,7 +188,8 @@ class CheckoutActivity : AppCompatActivity() {
                     paymentMethod,
                     status,
                     itemSize,
-                    itemColor
+                    itemColor,
+                    courier
                 )
                 dbHelper.reduceInventory(pId, qty)
             }
@@ -170,12 +205,13 @@ class CheckoutActivity : AppCompatActivity() {
                 paymentMethod,
                 status,
                 size,
-                color
+                color,
+                courier
             )
             dbHelper.reduceInventory(productId, quantity)
             dbHelper.removeFromCart(productId, userEmail)
         }
-        
+
         Toast.makeText(this, "Order Placed Successfully!", Toast.LENGTH_LONG).show()
         finish()
     }

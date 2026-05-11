@@ -18,7 +18,8 @@ class MyOrdersFragment : Fragment() {
         val imageUri: String?,
         val status: String,
         val size: String,
-        val color: String
+        val color: String,
+        val courier: String
     )
 
     override fun onCreateView(
@@ -46,7 +47,10 @@ class MyOrdersFragment : Fragment() {
                 
                 val colorIndex = cursor.getColumnIndex("selected_color")
                 val color = if (colorIndex != -1 && !cursor.isNull(colorIndex)) cursor.getString(colorIndex) else ""
-                
+
+                val courierIdx = cursor.getColumnIndex(DatabaseHelper.COL_ORDER_COURIER)
+                val courier = if (courierIdx != -1 && !cursor.isNull(courierIdx)) cursor.getString(courierIdx) else ""
+
                 // Fetch product details
                 var productName = "Unknown"
                 var productPrice = 0.0
@@ -63,7 +67,7 @@ class MyOrdersFragment : Fragment() {
                 }
                 pCursor.close()
 
-                ordersList.add(OrderItem(orderId, productId, productName, productPrice, imageUri, status, size, color))
+                ordersList.add(OrderItem(orderId, productId, productName, productPrice, imageUri, status, size, color, courier))
             } while (cursor.moveToNext())
         }
         cursor.close()
@@ -91,6 +95,7 @@ class MyOrdersFragment : Fragment() {
                 val infoList = mutableListOf("Status: ${order.status}")
                 if (order.size.isNotEmpty()) infoList.add("Size: ${order.size}")
                 if (order.color.isNotEmpty()) infoList.add("Color: ${order.color}")
+                if (order.courier.isNotEmpty()) infoList.add("Courier: ${order.courier}")
                 
                 categoryTv.text = infoList.joinToString(" | ")
 

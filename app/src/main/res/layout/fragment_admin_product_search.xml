@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/_8sdp"
+    android:background="#F5F5F5">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search products (moderator / category)"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:layout_marginBottom="@dimen/_8sdp"/>
+
+    <EditText
+        android:id="@+id/etModFirst"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Moderator first name"
+        android:textColor="@color/black"
+        android:layout_marginBottom="@dimen/_4sdp"/>
+    <EditText
+        android:id="@+id/etModLast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Moderator last name"
+        android:textColor="@color/black"
+        android:layout_marginBottom="@dimen/_4sdp"/>
+    <EditText
+        android:id="@+id/etModReg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Moderator registration date (contains)"
+        android:textColor="@color/black"
+        android:layout_marginBottom="@dimen/_4sdp"/>
+    <EditText
+        android:id="@+id/etCat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Category"
+        android:textColor="@color/black"
+        android:layout_marginBottom="@dimen/_4sdp"/>
+    <EditText
+        android:id="@+id/etSub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Subcategory / color"
+        android:textColor="@color/black"
+        android:layout_marginBottom="@dimen/_8sdp"/>
+
+    <Button
+        android:id="@+id/btnRunProductSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:background="@drawable/bg_btn_dark_16"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/tvEmptyProductSearch"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="No results"
+        android:visibility="gone"/>
+
+    <GridView
+        android:id="@+id/gridProductSearch"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:numColumns="2"
+        android:horizontalSpacing="@dimen/_8sdp"
+        android:verticalSpacing="@dimen/_8sdp"/>
+</LinearLayout>

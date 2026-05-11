@@ -2,14 +2,21 @@ package com.example.stylica
 
 import android.net.Uri
 import android.os.Bundle
-import android.view.*
-import android.widget.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.BaseAdapter
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.ListView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.stylica.data.db.DatabaseHelper
 
-class OrdersFragment : Fragment() {
+class ModeratorOrdersFragment : Fragment() {
 
-    data class AdminOrderItem(
+    data class ModOrderItem(
         val orderId: Int,
         val productName: String,
         val productPrice: Double,
@@ -27,32 +34,20 @@ class OrdersFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         val view = inflater.inflate(R.layout.fragment_orders, container, false)
-
         val dbHelper = DatabaseHelper(requireContext())
         val ordersListView = view.findViewById<ListView>(R.id.ordersListView)
+        val moderatorEmail = requireActivity().intent.getStringExtra("EMAIL") ?: ""
 
-        val ordersCursor = dbHelper.getAllOrders()
-        val ordersList = ArrayList<AdminOrderItem>()
+        val ordersCursor = dbHelper.getOrdersForModerator(moderatorEmail)
+        val ordersList = ArrayList<ModOrderItem>()
 
         if (ordersCursor.moveToFirst()) {
             do {
-                val orderId = ordersCursor.getInt(
-                    ordersCursor.getColumnIndexOrThrow(DatabaseHelper.COL_ORDER_ID)
-                )
-
-                val productId = ordersCursor.getInt(
-                    ordersCursor.getColumnIndexOrThrow(DatabaseHelper.COL_ORDER_PRODUCT_ID)
-                )
-
-                val userEmail = ordersCursor.getString(
-                    ordersCursor.getColumnIndexOrThrow(DatabaseHelper.COL_ORDER_USER_EMAIL)
-                )
-
-                val status = ordersCursor.getString(
-                    ordersCursor.getColumnIndexOrThrow(DatabaseHelper.COL_ORDER_STATUS)
-                )
+                val orderId = ordersCursor.getInt(ordersCursor.getColumnIndexOrThrow(DatabaseHelper.COL_ORDER_ID))
+                val productId = ordersCursor.getInt(ordersCursor.getColumnIndexOrThrow(DatabaseHelper.COL_ORDER_PRODUCT_ID))
+                val userEmail = ordersCursor.getString(ordersCursor.getColumnIndexOrThrow(DatabaseHelper.COL_ORDER_USER_EMAIL))
+                val status = ordersCursor.getString(ordersCursor.getColumnIndexOrThrow(DatabaseHelper.COL_ORDER_STATUS))
 
                 val sizeIndex = ordersCursor.getColumnIndex("selected_size")
                 val size = if (sizeIndex != -1 && !ordersCursor.isNull(sizeIndex)) ordersCursor.getString(sizeIndex) else ""
@@ -69,7 +64,7 @@ class OrdersFragment : Fragment() {
                 var productName = "Unknown"
                 var price = 0.0
                 var imageUri: String? = null
-                
+
                 val pCursor = dbHelper.readableDatabase.rawQuery(
                     "SELECT ${DatabaseHelper.COL_PRODUCT_NAME}, ${DatabaseHelper.COL_PRICE}, ${DatabaseHelper.COL_PRODUCT_IMAGE} FROM ${DatabaseHelper.TABLE_PRODUCTS} WHERE ${DatabaseHelper.COL_PRODUCT_ID} = ?",
                     arrayOf(productId.toString())
@@ -81,11 +76,11 @@ class OrdersFragment : Fragment() {
                 }
                 pCursor.close()
 
-                ordersList.add(AdminOrderItem(orderId, productName, price, imageUri, status, userEmail, size, color, paymentMethod, courier))
-
+                ordersList.add(
+                    ModOrderItem(orderId, productName, price, imageUri, status, userEmail, size, color, paymentMethod, courier)
+                )
             } while (ordersCursor.moveToNext())
         }
-
         ordersCursor.close()
 
         val adapter = object : BaseAdapter() {
@@ -100,7 +95,7 @@ class OrdersFragment : Fragment() {
                 val productPriceTv = itemView.findViewById<TextView>(R.id.productPriceTv)
                 val orderInfoTv = itemView.findViewById<TextView>(R.id.orderInfoTv)
                 val productImageView = itemView.findViewById<ImageView>(R.id.productImageView)
-                
+
                 val acceptBtn = itemView.findViewById<Button>(R.id.acceptBtn)
                 val rejectBtn = itemView.findViewById<Button>(R.id.rejectBtn)
                 val deliverBtn = itemView.findViewById<Button>(R.id.deliverBtn)
@@ -111,14 +106,13 @@ class OrdersFragment : Fragment() {
                 productPriceTv.text = "Rs. ${order.productPrice}"
 
                 val infoList = mutableListOf("Order #${order.orderId}")
+                infoList.add("Buyer: ${order.userEmail}")
                 infoList.add("Status: ${order.status}")
                 if (order.size.isNotEmpty()) infoList.add("Size: ${order.size}")
                 if (order.color.isNotEmpty()) infoList.add("Color: ${order.color}")
-                
                 val paymentDisplay = if (order.paymentMethod == "Cash on Delivery") "Cash on Delivery" else "Payment done"
                 infoList.add("Payment: $paymentDisplay")
                 if (order.courier.isNotEmpty()) infoList.add("Courier: ${order.courier}")
-                
                 orderInfoTv.text = infoList.joinToString(" | ")
 
                 if (!order.imageUri.isNullOrEmpty()) {
@@ -161,16 +155,16 @@ class OrdersFragment : Fragment() {
         }
 
         ordersListView.adapter = adapter
-        
-        val tvEmptyAdminOrders = view.findViewById<TextView>(R.id.tvEmptyAdminOrders)
+
+        val tvEmpty = view.findViewById<TextView>(R.id.tvEmptyAdminOrders)
         if (ordersList.isEmpty()) {
-            tvEmptyAdminOrders.visibility = View.VISIBLE
+            tvEmpty.visibility = View.VISIBLE
             ordersListView.visibility = View.GONE
         } else {
-            tvEmptyAdminOrders.visibility = View.GONE
+            tvEmpty.visibility = View.GONE
             ordersListView.visibility = View.VISIBLE
         }
-        
+
         return view
     }
 }
