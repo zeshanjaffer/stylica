@@ -26,9 +26,13 @@ class AdminProductSearchFragment : Fragment() {
         val imageUri: String?
     )
 
+    private val list = ArrayList<Row>()
+    private lateinit var adapter: BaseAdapter
+    private lateinit var dbHelper: DatabaseHelper
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_admin_product_search, container, false)
-        val dbHelper = DatabaseHelper(requireContext())
+        dbHelper = DatabaseHelper(requireContext())
         val grid = view.findViewById<GridView>(R.id.gridProductSearch)
         val empty = view.findViewById<TextView>(R.id.tvEmptyProductSearch)
         val etModFirst = view.findViewById<EditText>(R.id.etModFirst)
@@ -37,9 +41,7 @@ class AdminProductSearchFragment : Fragment() {
         val etCat = view.findViewById<EditText>(R.id.etCat)
         val etSub = view.findViewById<EditText>(R.id.etSub)
 
-        val list = ArrayList<Row>()
-
-        val adapter: BaseAdapter = object : BaseAdapter() {
+        adapter = object : BaseAdapter() {
             override fun getCount() = list.size
             override fun getItem(position: Int) = list[position]
             override fun getItemId(position: Int) = list[position].id.toLong()
@@ -72,7 +74,7 @@ class AdminProductSearchFragment : Fragment() {
                         .setPositiveButton("Delete") { _, _ ->
                             if (dbHelper.deleteProduct(p.id)) {
                                 Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show()
-                                reload()
+                                reload(etModFirst, etModLast, etModReg, etCat, etSub, empty, grid)
                             }
                         }
                         .setNegativeButton("Cancel", null)
@@ -83,35 +85,45 @@ class AdminProductSearchFragment : Fragment() {
         }
         grid.adapter = adapter
 
-        fun reload() {
-            list.clear()
-            val c = dbHelper.searchModeratorProductsForAdmin(
-                etModFirst.text.toString(),
-                etModLast.text.toString(),
-                etModReg.text.toString(),
-                etCat.text.toString(),
-                etSub.text.toString()
-            )
-            if (c.moveToFirst()) {
-                do {
-                    val id = c.getInt(c.getColumnIndexOrThrow(DatabaseHelper.COL_PRODUCT_ID))
-                    val name = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.COL_PRODUCT_NAME))
-                    val price = c.getDouble(c.getColumnIndexOrThrow(DatabaseHelper.COL_PRICE))
-                    val stIdx = c.getColumnIndex(DatabaseHelper.COL_STATUS)
-                    val status = if (stIdx != -1 && !c.isNull(stIdx)) c.getString(stIdx) else ""
-                    val imgIdx = c.getColumnIndex(DatabaseHelper.COL_PRODUCT_IMAGE)
-                    val img = if (imgIdx != -1 && !c.isNull(imgIdx)) c.getString(imgIdx) else null
-                    list.add(Row(id, name, price, status, img))
-                } while (c.moveToNext())
-            }
-            c.close()
-            adapter.notifyDataSetChanged()
-            empty.visibility = if (list.isEmpty()) View.VISIBLE else View.GONE
-            grid.visibility = if (list.isEmpty()) View.GONE else View.VISIBLE
+        view.findViewById<Button>(R.id.btnRunProductSearch).setOnClickListener {
+            reload(etModFirst, etModLast, etModReg, etCat, etSub, empty, grid)
         }
-
-        view.findViewById<Button>(R.id.btnRunProductSearch).setOnClickListener { reload() }
-        reload()
+        reload(etModFirst, etModLast, etModReg, etCat, etSub, empty, grid)
         return view
+    }
+
+    private fun reload(
+        etModFirst: EditText,
+        etModLast: EditText,
+        etModReg: EditText,
+        etCat: EditText,
+        etSub: EditText,
+        empty: View,
+        grid: View
+    ) {
+        list.clear()
+        val c = dbHelper.searchModeratorProductsForAdmin(
+            etModFirst.text.toString(),
+            etModLast.text.toString(),
+            etModReg.text.toString(),
+            etCat.text.toString(),
+            etSub.text.toString()
+        )
+        if (c.moveToFirst()) {
+            do {
+                val id = c.getInt(c.getColumnIndexOrThrow(DatabaseHelper.COL_PRODUCT_ID))
+                val name = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.COL_PRODUCT_NAME))
+                val price = c.getDouble(c.getColumnIndexOrThrow(DatabaseHelper.COL_PRICE))
+                val stIdx = c.getColumnIndex(DatabaseHelper.COL_STATUS)
+                val status = if (stIdx != -1 && !c.isNull(stIdx)) c.getString(stIdx) else ""
+                val imgIdx = c.getColumnIndex(DatabaseHelper.COL_PRODUCT_IMAGE)
+                val img = if (imgIdx != -1 && !c.isNull(imgIdx)) c.getString(imgIdx) else null
+                list.add(Row(id, name, price, status, img))
+            } while (c.moveToNext())
+        }
+        c.close()
+        adapter.notifyDataSetChanged()
+        empty.visibility = if (list.isEmpty()) View.VISIBLE else View.GONE
+        grid.visibility = if (list.isEmpty()) View.GONE else View.VISIBLE
     }
 }

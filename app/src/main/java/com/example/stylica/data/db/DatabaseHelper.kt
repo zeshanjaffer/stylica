@@ -215,9 +215,9 @@ class DatabaseHelper(context: Context) :
 
     private fun seedDefaultCouriers(db: SQLiteDatabase) {
         val defaults = listOf(
-            Triple("TCS", "021-111-123-456"),
-            Triple("Leopard Courier", "021-111-456-789"),
-            Triple("Pak Post", "051-920-5010")
+            Pair("TCS", "021-111-123-456"),
+            Pair("Leopard Courier", "021-111-456-789"),
+            Pair("Pak Post", "051-920-5010")
         )
         for ((name, phone) in defaults) {
             val cv = ContentValues().apply {

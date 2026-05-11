@@ -20,15 +20,18 @@ class AdminModeratorProductsFragment : Fragment() {
 
     private data class Row(val id: Int, val name: String, val price: Double, val status: String, val imageUri: String?)
 
+    private val list = ArrayList<Row>()
+    private lateinit var adapter: BaseAdapter
+    private lateinit var db: DatabaseHelper
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_admin_mod_products, container, false)
-        val db = DatabaseHelper(requireContext())
+        db = DatabaseHelper(requireContext())
         val grid = view.findViewById<GridView>(R.id.gridModProducts)
         val empty = view.findViewById<TextView>(R.id.tvEmptyModProducts)
         val etCat = view.findViewById<EditText>(R.id.etCategoryFilter)
-        val list = ArrayList<Row>()
 
-        val adapter: BaseAdapter = object : BaseAdapter() {
+        adapter = object : BaseAdapter() {
             override fun getCount() = list.size
             override fun getItem(position: Int) = list[position]
             override fun getItemId(position: Int) = list[position].id.toLong()
@@ -61,7 +64,7 @@ class AdminModeratorProductsFragment : Fragment() {
                         .setPositiveButton("Delete") { _, _ ->
                             if (db.deleteProduct(p.id)) {
                                 Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show()
-                                load()
+                                load(etCat, empty, grid)
                             }
                         }
                         .setNegativeButton("Cancel", null)
@@ -72,28 +75,28 @@ class AdminModeratorProductsFragment : Fragment() {
         }
         grid.adapter = adapter
 
-        fun load() {
-            list.clear()
-            val c = db.getModeratorProductsByCategory(etCat.text.toString())
-            if (c.moveToFirst()) {
-                do {
-                    val id = c.getInt(c.getColumnIndexOrThrow(DatabaseHelper.COL_PRODUCT_ID))
-                    val name = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.COL_PRODUCT_NAME))
-                    val price = c.getDouble(c.getColumnIndexOrThrow(DatabaseHelper.COL_PRICE))
-                    val st = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.COL_STATUS))
-                    val imgIdx = c.getColumnIndex(DatabaseHelper.COL_PRODUCT_IMAGE)
-                    val img = if (imgIdx != -1 && !c.isNull(imgIdx)) c.getString(imgIdx) else null
-                    list.add(Row(id, name, price, st, img))
-                } while (c.moveToNext())
-            }
-            c.close()
-            adapter.notifyDataSetChanged()
-            empty.visibility = if (list.isEmpty()) View.VISIBLE else View.GONE
-            grid.visibility = if (list.isEmpty()) View.GONE else View.VISIBLE
-        }
-
-        view.findViewById<Button>(R.id.btnLoadModProducts).setOnClickListener { load() }
-        load()
+        view.findViewById<Button>(R.id.btnLoadModProducts).setOnClickListener { load(etCat, empty, grid) }
+        load(etCat, empty, grid)
         return view
+    }
+
+    private fun load(etCat: EditText, empty: View, grid: View) {
+        list.clear()
+        val c = db.getModeratorProductsByCategory(etCat.text.toString())
+        if (c.moveToFirst()) {
+            do {
+                val id = c.getInt(c.getColumnIndexOrThrow(DatabaseHelper.COL_PRODUCT_ID))
+                val name = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.COL_PRODUCT_NAME))
+                val price = c.getDouble(c.getColumnIndexOrThrow(DatabaseHelper.COL_PRICE))
+                val st = c.getString(c.getColumnIndexOrThrow(DatabaseHelper.COL_STATUS))
+                val imgIdx = c.getColumnIndex(DatabaseHelper.COL_PRODUCT_IMAGE)
+                val img = if (imgIdx != -1 && !c.isNull(imgIdx)) c.getString(imgIdx) else null
+                list.add(Row(id, name, price, st, img))
+            } while (c.moveToNext())
+        }
+        c.close()
+        adapter.notifyDataSetChanged()
+        empty.visibility = if (list.isEmpty()) View.VISIBLE else View.GONE
+        grid.visibility = if (list.isEmpty()) View.GONE else View.VISIBLE
     }
 }
