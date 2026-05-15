@@ -18,7 +18,7 @@ def migrate_to_sdp_ssp(directory):
                         return f'"{val}dp"'
                     return f'"@dimen/_{val}sdp"'
 
-                # Function to process sp matches
+
                 def replace_sp(match):
                     val = int(match.group(1))
                     if val == 0:
