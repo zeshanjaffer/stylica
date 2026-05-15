@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Admin tools"
-            android:textSize="22sp"
+            android:textSize="@dimen/_22ssp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginBottom="@dimen/_16sdp"/>

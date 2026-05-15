@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Home"
-            android:textSize="26sp"
+            android:textSize="@dimen/_26ssp"
             android:textStyle="bold"
             android:textColor="@color/black"/>
 
@@ -35,13 +35,13 @@
             android:layout_marginTop="@dimen/_16sdp"
             android:background="@drawable/bg_search_bar"
             android:textColorHint="@color/colorAppDarkGrey"
-            android:textSize="14sp"/>
+            android:textSize="@dimen/_14ssp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Categories"
-            android:textSize="18sp"
+            android:textSize="@dimen/_18ssp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginTop="@dimen/_24sdp"/>
@@ -79,7 +79,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Clothes"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/_12ssp"
                     android:textColor="@color/black"
                     android:layout_marginTop="@dimen/_8sdp"/>
             </LinearLayout>
@@ -110,7 +110,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Makeup"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/_12ssp"
                     android:textColor="@color/black"
                     android:layout_marginTop="@dimen/_8sdp"/>
             </LinearLayout>
@@ -122,7 +122,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Arrivals"
-        android:textSize="18sp"
+        android:textSize="@dimen/_18ssp"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:layout_marginTop="@dimen/_8sdp"

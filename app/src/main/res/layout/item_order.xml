@@ -45,7 +45,7 @@
                     android:id="@+id/productNameTv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/_16ssp"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:maxLines="1"
@@ -55,7 +55,7 @@
                     android:id="@+id/productPriceTv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_14ssp"
                     android:textColor="@color/colorAppDarkGrey"
                     android:layout_marginTop="@dimen/_2sdp"/>
 
@@ -63,7 +63,7 @@
                     android:id="@+id/orderInfoTv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/_12ssp"
                     android:textColor="@color/colorAppBlue"
                     android:layout_marginTop="@dimen/_4sdp"
                     android:textStyle="bold"/>

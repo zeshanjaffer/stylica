@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Edit Product"
-        android:textSize="18sp"
+        android:textSize="@dimen/_18ssp"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:layout_marginBottom="@dimen/_16sdp"/>
@@ -23,7 +23,7 @@
         android:background="@drawable/bg_edit_text"
         android:paddingHorizontal="@dimen/_12sdp"
         android:hint="Product Name"
-        android:textSize="14sp"
+        android:textSize="@dimen/_14ssp"
         android:layout_marginBottom="@dimen/_12sdp"/>
 
     <EditText
@@ -34,7 +34,7 @@
         android:paddingHorizontal="@dimen/_12sdp"
         android:hint="Price"
         android:inputType="numberDecimal"
-        android:textSize="14sp"
+        android:textSize="@dimen/_14ssp"
         android:layout_marginBottom="@dimen/_12sdp"/>
 
     <EditText
@@ -45,7 +45,7 @@
         android:paddingHorizontal="@dimen/_12sdp"
         android:hint="Stock/Inventory"
         android:inputType="number"
-        android:textSize="14sp"
+        android:textSize="@dimen/_14ssp"
         android:layout_marginBottom="@dimen/_12sdp"/>
 
     <EditText
@@ -55,7 +55,7 @@
         android:background="@drawable/bg_edit_text"
         android:paddingHorizontal="@dimen/_12sdp"
         android:hint="Available Colors (e.g., Red, Blue)"
-        android:textSize="14sp"
+        android:textSize="@dimen/_14ssp"
         android:visibility="gone"
         android:layout_marginBottom="@dimen/_12sdp"/>
 
@@ -66,7 +66,7 @@
         android:background="@drawable/bg_edit_text"
         android:paddingHorizontal="@dimen/_12sdp"
         android:hint="Available Sizes (e.g., S, M, L)"
-        android:textSize="14sp"
+        android:textSize="@dimen/_14ssp"
         android:visibility="gone"
         android:layout_marginBottom="@dimen/_12sdp"/>
 
@@ -79,7 +79,7 @@
         android:padding="@dimen/_12sdp"
         android:hint="Description"
         android:gravity="top|start"
-        android:textSize="14sp"
+        android:textSize="@dimen/_14ssp"
         android:layout_marginBottom="@dimen/_16sdp"/>
 
     <LinearLayout

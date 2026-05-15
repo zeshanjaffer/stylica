@@ -9,7 +9,7 @@ def migrate_to_sdp_ssp(directory):
                 with open(filepath, 'r') as f:
                     content = f.read()
 
-                # Function to process dp matches
+              
                 def replace_dp(match):
                     val = int(match.group(1))
                     if val == 0:

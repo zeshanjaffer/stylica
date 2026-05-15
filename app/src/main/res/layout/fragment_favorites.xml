@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="My Favorites"
-        android:textSize="24sp"
+        android:textSize="@dimen/_24ssp"
         android:textStyle="bold"
         android:layout_marginBottom="@dimen/_16sdp" />
 
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="No favorites yet."
-        android:textSize="18sp"
+        android:textSize="@dimen/_18ssp"
         android:visibility="gone" />
 
 </RelativeLayout>

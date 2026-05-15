@@ -73,7 +73,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Category"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/_14ssp"
                         android:textColor="@color/colorAppDarkGrey"
                         android:background="@drawable/bg_btn_dark"
                         android:paddingStart="@dimen/_12sdp"
@@ -89,7 +89,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Color: N/A"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/_12ssp"
                         android:textColor="@color/black"
                         android:layout_marginTop="@dimen/_4sdp"
                         android:visibility="gone"/>
@@ -99,7 +99,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Size: N/A"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/_12ssp"
                         android:textColor="@color/black"
                         android:layout_marginTop="@dimen/_4sdp"
                         android:visibility="gone"/>
@@ -108,7 +108,7 @@
                         android:id="@+id/productName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="22sp"
+                        android:textSize="@dimen/_22ssp"
                         android:textStyle="bold"
                         android:textColor="@color/black"
                         android:layout_marginTop="@dimen/_8sdp" />
@@ -117,7 +117,7 @@
                         android:id="@+id/productStock"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/_12ssp"
                         android:textColor="@color/black"
                         android:layout_marginTop="@dimen/_4sdp" />
 
@@ -125,7 +125,7 @@
                         android:id="@+id/productStatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/_12ssp"
                         android:textColor="@android:color/darker_gray" />
 
                 </LinearLayout>
@@ -134,7 +134,7 @@
                     android:id="@+id/productPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="24sp"
+                    android:textSize="@dimen/_24ssp"
                     android:textStyle="bold"
                     android:textColor="@color/black" />
             </LinearLayout>
@@ -160,7 +160,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Size"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/_16ssp"
                         android:textStyle="bold"
                         android:textColor="@color/black" />
 
@@ -184,7 +184,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Color"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/_16ssp"
                         android:textStyle="bold"
                         android:textColor="@color/black" />
 
@@ -217,7 +217,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Quantity"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/_16ssp"
                     android:textStyle="bold"
                     android:textColor="@color/black" />
 
@@ -244,7 +244,7 @@
                         android:text="1"
                         android:textColor="@color/white"
                         android:gravity="center"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/_16ssp"
                         android:textStyle="bold" />
 
                     <ImageView
@@ -261,7 +261,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Descriptions"
-                android:textSize="16sp"
+                android:textSize="@dimen/_16ssp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:layout_marginTop="@dimen/_24sdp" />
@@ -270,7 +270,7 @@
                 android:id="@+id/productDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
+                android:textSize="@dimen/_14ssp"
                 android:textColor="#808080"
                 android:layout_marginTop="@dimen/_8sdp"
                 android:lineSpacingExtra="@dimen/_4sdp" />
@@ -318,7 +318,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Creator Name"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/_14ssp"
                         android:textStyle="bold"
                         android:textColor="@color/black"/>
                         
@@ -326,7 +326,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Verified Creator"
-                        android:textSize="10sp"
+                        android:textSize="@dimen/_10ssp"
                         android:textColor="#808080"/>
                 </LinearLayout>
             </LinearLayout>

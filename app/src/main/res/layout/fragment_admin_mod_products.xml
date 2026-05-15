@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:text="Moderator products by category"
         android:textStyle="bold"
-        android:textSize="18sp"
+        android:textSize="@dimen/_18ssp"
         android:textColor="@color/black"/>
 
     <EditText

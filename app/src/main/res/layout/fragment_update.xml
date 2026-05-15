@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/update_user_title"
-            android:textSize="24sp"
+            android:textSize="@dimen/_24ssp"
             android:textColor="@color/black"
             android:layout_marginBottom="@dimen/_24sdp"
             android:textStyle="bold"/>
@@ -66,7 +66,7 @@
                     android:text="Select Photo"
                     android:background="@drawable/bg_btn_blue_16"
                     android:textColor="#FFFFFF"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_14ssp"
                     android:textStyle="bold"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -90,7 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/new_firstname_text"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_14ssp"
                     android:textColor="@color/black"
                     android:textStyle="bold"/>
 
@@ -103,14 +103,14 @@
                     android:layout_marginBottom="@dimen/_16sdp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_48sdp"
-                    android:textSize="14sp"/>
+                    android:textSize="@dimen/_14ssp"/>
 
                 <TextView
                     android:id="@+id/newLastNameText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/new_lastname_text"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_14ssp"
                     android:textColor="@color/black"
                     android:textStyle="bold"/>
 
@@ -123,13 +123,13 @@
                     android:layout_marginBottom="@dimen/_16sdp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_48sdp"
-                    android:textSize="14sp"/>
+                    android:textSize="@dimen/_14ssp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Gender"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_14ssp"
                     android:textColor="@color/black"
                     android:textStyle="bold"/>
                 <Spinner
@@ -143,7 +143,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Phone"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_14ssp"
                     android:textColor="@color/black"
                     android:textStyle="bold"/>
                 <EditText
@@ -156,13 +156,13 @@
                     android:layout_marginBottom="@dimen/_16sdp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_48sdp"
-                    android:textSize="14sp"/>
+                    android:textSize="@dimen/_14ssp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Address"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_14ssp"
                     android:textColor="@color/black"
                     android:textStyle="bold"/>
                 <EditText
@@ -184,7 +184,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Product domain"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_14ssp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:visibility="gone"/>
@@ -197,7 +197,7 @@
                     android:layout_marginBottom="@dimen/_16sdp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_48sdp"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_14ssp"
                     android:visibility="gone"/>
 
                 <TextView
@@ -205,7 +205,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/new_pass_text"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_14ssp"
                     android:textColor="@color/black"
                     android:textStyle="bold"/>
 
@@ -219,7 +219,7 @@
                     android:layout_marginBottom="@dimen/_8sdp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_48sdp"
-                    android:textSize="14sp"/>
+                    android:textSize="@dimen/_14ssp"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -229,7 +229,7 @@
             android:text="Update User"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_56sdp"
-            android:textSize="16sp"
+            android:textSize="@dimen/_16ssp"
             android:background="@drawable/bg_btn_dark_16"
             android:textStyle="bold"
             android:textColor="#FFFFFF" />

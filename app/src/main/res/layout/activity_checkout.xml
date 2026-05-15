@@ -48,7 +48,7 @@
                         android:text="Order Summary"
                         android:textStyle="bold"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/_18ssp"
                         android:layout_marginBottom="@dimen/_8sdp"/>
 
                     <TextView
@@ -56,7 +56,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorAppDarkGrey"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/_14ssp"
                         android:text="Product Name"/>
 
                     <TextView
@@ -65,7 +65,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorAppBlue"
                         android:textStyle="bold"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/_16ssp"
                         android:layout_marginTop="@dimen/_4sdp"
                         android:text="Price"/>
 
@@ -93,7 +93,7 @@
                         android:text="Delivery Information"
                         android:textStyle="bold"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/_16ssp"
                         android:layout_marginBottom="@dimen/_12sdp"/>
 
                     <EditText
@@ -129,7 +129,7 @@
                         android:layout_height="wrap_content"
                         android:text="Payment Method"
                         android:textColor="@color/colorAppDarkGrey"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/_14ssp"
                         android:layout_marginBottom="@dimen/_4sdp"/>
 
                     <Spinner
@@ -145,7 +145,7 @@
                         android:layout_height="wrap_content"
                         android:text="Courier"
                         android:textColor="@color/colorAppDarkGrey"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/_14ssp"
                         android:layout_marginBottom="@dimen/_4sdp"/>
 
                     <Spinner
@@ -164,7 +164,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Confirm Order"
-                android:textSize="16sp"
+                android:textSize="@dimen/_16ssp"
                 android:textColor="@color/white"
                 android:padding="@dimen/_12sdp"
                 android:background="@drawable/bg_btn_dark_8"
